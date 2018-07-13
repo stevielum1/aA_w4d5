@@ -16,6 +16,11 @@ class User < ApplicationRecord
   
   after_initialize :ensure_session_token
   
+  has_many :goals,
+  primary_key: :id,
+  foreign_key: :user_id,
+  class_name: :Goal
+  
   attr_reader :password
   
   def self.find_by_credentials(email, password)
@@ -45,5 +50,9 @@ class User < ApplicationRecord
     self.session_token = generate_session_token
     self.save
     self.session_token
+  end
+  
+  def completed_goals
+    self.goals.where(complete: true)
   end
 end

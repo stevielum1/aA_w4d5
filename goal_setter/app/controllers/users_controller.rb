@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     if @user
       render :show
     else
+      debugger
       flash[:errors] = ['User could not be found']
       redirect_to new_user_url
     end 

@@ -23,6 +23,10 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:password).is_at_least(6) }
   end
   
+  # describe 'associations' do
+  #   it { should have_many(:goals) }
+  # end
+  
   describe 'session token' do
     it 'sets the user\'s session token after initialize' do
       expect(user.session_token).not_to be_nil
