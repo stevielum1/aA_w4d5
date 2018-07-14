@@ -20,4 +20,13 @@ class Goal < ApplicationRecord
   primary_key: :id,
   foreign_key: :user_id,
   class_name: :User
+  
+  # has_many :comments,
+  #   foreign_key: :goal_id,
+  #   class_name: :GoalComment
+  
+  has_many :comments,
+    as: :model
+    
+    
 end

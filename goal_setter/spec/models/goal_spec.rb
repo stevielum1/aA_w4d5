@@ -16,16 +16,11 @@ require 'rails_helper'
 
 RSpec.describe Goal, type: :model do
   
-  # subject(:goal) { Goal.create!(title: 'title stuff', description: 'this is the description', user_id: 1, public: true, complete: false) } 
-  # # subject(:goal) do
-  #   FactoryBot.build(:goal,
-  #     title: "title of goal",
-  #     description: "description of goal",
-  #     user_id: 1)
-  # end
+
   
   # describe 'validations' do
-  #   subject(:goal) { Goal.create!(title: 'title stuff', description: 'this is the description', user_id: 1, public: true, complete: false) } 
+  #   user = User.create(email: 'email@email.com', password: 'password')
+  #   subject(:goal) { Goal.create!(title: 'title stuff', description: 'this is the description', user_id: user.id, public: true, complete: false) } 
   #   it { should validate_presence_of(:title) }
   #   it { should validate_presence_of(:description) }
   #   it { should validate_inclusion_of(:public).in_array(['true', 'false']) }

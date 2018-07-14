@@ -12,21 +12,21 @@ RSpec.describe UsersController, type: :controller do
   describe 'post#create' do
     context 'with valid params' do
       it "logs in the user" do
-        post :create, params: {user: { email: 'email@email.com', password: '123456' }}
-        user = User.find_by(email: 'email@email.com')
+        post :create, params: {user: { email: 'supernewemailaddress', password: '123456' }}
+        user = User.find_by(email: 'supernewemailaddress')
         expect(session[:session_token]).to eq(user.session_token)
       end
       
       it "redirects to users show page" do
-        post :create, params: {user: { email: 'email@email.com', password: '123456' }}
-        user = User.find_by(email: 'email@email.com')
+        post :create, params: {user: { email: 'supernewemailaddress', password: '123456' }}
+        user = User.find_by(email: 'supernewemailaddress')
         expect(response).to redirect_to(user_url(user))
       end
     end
     
     context 'with invalid params' do
       it 'validates presense of password and renders template with appropriate errors' do
-        post :create, params: {user: { email: 'email@email.com', password: '123' }}
+        post :create, params: {user: { email: 'supernewemailaddress', password: '123' }}
         expect(response).to render_template(:new)
         expect(flash[:errors]).to_not be_nil
       end

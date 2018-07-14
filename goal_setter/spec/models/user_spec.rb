@@ -14,7 +14,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   
-  let(:user) { User.new(email: 'email@email.com', password: '123456') }
+  let(:user) { User.new(email: 'email@otheremail.com', password: '123456') }
   
   describe 'validations' do
     it { should validate_presence_of(:email) }
@@ -23,9 +23,11 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:password).is_at_least(6) }
   end
   
-  # describe 'associations' do
-  #   it { should have_many(:goals) }
-  # end
+  describe 'associations' do
+    it { should have_many(:goals) }
+    it { should have_many(:authored_comments) }
+    it { should have_many(:comments)}
+  end
   
   describe 'session token' do
     it 'sets the user\'s session token after initialize' do
@@ -35,14 +37,14 @@ RSpec.describe User, type: :model do
   
   describe '::find_by_credentials' do
     before(:each) do
-      User.create(email: 'email@email.com', password: '123456')
+      User.create(email: 'email@otheremail.com', password: '123456')
     end
     it 'finds a user with valid credentials' do
-      expect(User.find_by_credentials('email@email.com','123456')).to_not be_nil
+      expect(User.find_by_credentials('email@otheremail.com','123456')).to_not be_nil
     end
     
     it 'returns nil with invaild credentials' do
-      expect(User.find_by_credentials('email@email.com','bad_password')).to be_nil
+      expect(User.find_by_credentials('email@otheremail.com','bad_password')).to be_nil
     end
   end
   

@@ -21,6 +21,26 @@ class User < ApplicationRecord
   foreign_key: :user_id,
   class_name: :Goal
   
+  has_many :comments,
+    as: :model
+    
+  has_many :authored_comments,
+    foreign_key: :author_id,
+    class_name: :Comment
+  
+  # has_many :authored_user_comments,
+  #   foreign_key: :author_id,
+  #   class_name: :UserComment
+  # 
+  # has_many :authored_goal_comments,
+  # foreign_key: :author_id,
+  # class_name: :GoalComment
+  # 
+  # has_many :comments,
+  #   foreign_key: :user_id,
+  #   class_name: :UserComment
+    
+  
   attr_reader :password
   
   def self.find_by_credentials(email, password)
